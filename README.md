@@ -312,6 +312,20 @@ This framework is optimized for **CPU-only execution on laptops**:
   - Trade-off decisions and rationale
   - Scalability and production migration plan
 
+- **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)**: Detailed project structure documentation
+  - Directory tree and component justification
+  - Module specifications with interfaces
+  - Data flow and dependency mapping
+  - Explicit omissions with rationale
+
+- **[BRANCHING_STRATEGY.md](BRANCHING_STRATEGY.md)**: Git workflow and best practices
+  - Branch structure (main, develop, staging)
+  - Feature/bugfix/hotfix workflows
+  - Commit message conventions
+  - Pull request guidelines
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)**: Contribution guidelines
+- **[QUICKSTART.md](QUICKSTART.md)**: 5-minute getting started guide
 - **Code Documentation**: Comprehensive docstrings in all modules
 - **Configuration Reference**: See `config/*.yaml` for examples
 
@@ -334,15 +348,27 @@ Key takeaways applied in this codebase:
 
 ## 🤝 Contributing
 
-Contributions welcome! Please:
+Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [BRANCHING_STRATEGY.md](BRANCHING_STRATEGY.md) for detailed guidelines.
+
+**Quick Start:**
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Ensure tests pass (`pytest tests/ -v`)
-4. Run causality audit (`python scripts/run_audit.py`)
-5. Commit changes (`git commit -m 'Add amazing feature'`)
-6. Push to branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+2. Create a feature branch from `develop`: `git checkout develop && git checkout -b feature/amazing-feature`
+3. Make your changes with tests
+4. Ensure tests pass: `pytest tests/ -v`
+5. Run causality audit: `python scripts/run_audit.py`
+6. Follow [Conventional Commits](https://www.conventionalcommits.org/): `git commit -m 'feat: Add amazing feature'`
+7. Push to your fork: `git push origin feature/amazing-feature`
+8. Open a Pull Request to `develop` branch
+
+**Branch Structure:**
+- `main` - Production-ready code (protected)
+- `develop` - Active development integration (protected)
+- `staging` - Pre-production testing (protected)
+- `feature/*` - New features (branch from develop)
+- `bugfix/*` - Bug fixes (branch from develop)
+- `hotfix/*` - Critical production fixes (branch from main)
+- `experiment/*` - ML experiments (branch from develop)
 
 **Areas for contribution:**
 - Additional feature definitions (Bollinger Bands, ATR, etc.)
