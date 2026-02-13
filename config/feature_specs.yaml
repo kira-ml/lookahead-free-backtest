@@ -1,0 +1,37 @@
+# Feature Specifications
+# Define features with strict temporal dependencies
+
+features:
+  - name: "price_return_1d"
+    type: "simple"
+    computation: "pct_change"
+    window: 1
+    lag: 1  # Ensures no lookahead
+    dependencies: []
+    
+  - name: "volume_ma_5d"
+    type: "rolling"
+    computation: "mean"
+    window: 5
+    lag: 1
+    dependencies: []
+    
+  - name: "volatility_10d"
+    type: "rolling"
+    computation: "std"
+    window: 10
+    lag: 1
+    dependencies: []
+    
+  - name: "momentum_signal"
+    type: "derived"
+    computation: "custom"
+    lag: 1
+    dependencies:
+      - "price_return_1d"
+      - "volume_ma_5d"
+
+temporal_constraints:
+  min_lag: 1  # Minimum lag to prevent lookahead
+  max_window: 252  # Maximum lookback window
+  validate_causality: true

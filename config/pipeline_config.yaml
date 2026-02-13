@@ -1,0 +1,27 @@
+# Pipeline Configuration
+
+data:
+  raw_path: "data/raw"
+  processed_path: "data/processed"
+  format: "parquet"
+  
+ingestion:
+  batch_size: 10000
+  validate_timestamps: true
+  sort_by_time: true
+  
+feature_computation:
+  parallel: false  # Sequential to maintain temporal order
+  checkpoint_frequency: 1000
+  validate_each_step: true
+  
+validation:
+  strict_mode: true
+  check_lookahead: true
+  check_data_leakage: true
+  audit_log_path: "experiments/audit.log"
+  
+experiment:
+  tracking_dir: "experiments"
+  save_checkpoints: true
+  random_seed: 42
